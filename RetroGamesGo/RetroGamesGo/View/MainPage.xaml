@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RetroGamesGo"
+             x:Class="RetroGamesGo.MainPage"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView" >
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout BackgroundColor="{StaticResource BackgroundColor}" Padding="0,30,0,0" VerticalOptions="FillAndExpand">
+        <cards:CoverFlowView PositionShiftValue="60" IsCyclical="true" VerticalOptions="FillAndExpand" ItemsSource="{Binding Characters}">
+            <cards:CoverFlowView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView Padding="40,36,40,15">
+                        <!--Template-->
+                        <Frame HasShadow="false" CornerRadius="15" Padding="20" BackgroundColor="{StaticResource CardBackgroundColor}" VerticalOptions="FillAndExpand">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="Large" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                                <Image Source="{Binding ImageSource}" />
+                                <Label Text="{Binding Description}" TextColor="White" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </Frame>
+                    </ContentView>
+                </DataTemplate>
+            </cards:CoverFlowView.ItemTemplate>
+            
+        </cards:CoverFlowView>
+
+        <Button Text="CAPTURAR" BackgroundColor="{StaticResource GoldColor}" TextColor="Black" FontAttributes="Bold" Margin="20,0,20,40" Command="{Binding CaptureCommand}"/>
+    </StackLayout>
+
+</ContentPage>
